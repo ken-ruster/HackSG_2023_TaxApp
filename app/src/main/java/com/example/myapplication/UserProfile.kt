@@ -1,19 +1,20 @@
 package com.example.myapplication
 
 class UserProfile {
-    private lateinit var responses: MutableList<UserResponse>
-    lateinit var mainJob: String
+    val fy: Int = 2023
+    private lateinit var responses: MutableList<Job>
+    val mainJob: String get() = responses.maxBy { it.totalEarnings() }.jobName
     var totalRev: Float = 0.0F
-    private var _totalMatCost = 0.0F
+    var totalMatCost = 0.0F
     var totalAllowableExp = 0.0F
-    val totalGrossProfit get() = totalRev - _totalMatCost
-    val totalAdjProfit get() = totalRev - _totalMatCost - totalAllowableExp
+    fun totalGrossProfit() = totalRev - totalMatCost
+    fun totalAdjProfit() = totalRev - totalMatCost - totalAllowableExp
 
-    fun addJob(job: UserResponse){
+    fun addJob(job: Job){
         responses.add(job)
-        totalRev += job.rev
-        _totalMatCost += job.exp.matCost
-        totalAllowableExp += job.exp.allowable
+        totalRev += job.totalEarnings()
+        totalMatCost += job.matCost()
+        totalAllowableExp += job.allowable()
     }
 
     fun isEmpty(): Boolean {return responses.isEmpty()}
