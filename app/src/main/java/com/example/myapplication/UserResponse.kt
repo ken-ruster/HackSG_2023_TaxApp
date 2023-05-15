@@ -1,23 +1,23 @@
 package com.example.myapplication
 
-class UserResponse() {
+class UserResponse {
     lateinit var job: Job
     var rev: Float = 0.0F
     lateinit var exp: Exp
 
-    val profit: Float get() =  rev - exp.mat_cost //gross profit
-    val profit_adj: Float get() = profit - exp.allowable //adjusted profit
+    val profit: Float get() =  rev - exp.matCost //gross profit
+    val profitAdj: Float get() = profit - exp.allowable //adjusted profit
 
 
     //For private hire or taxi drivers
-    inner class Taxi_Exp(): Exp() {
-        var erp_cost: Float = 0.0F
-        var fuel_cost: Float = 0.0F
-        var license_costs: Float = 0.0F
-        var washing_costs: Float = 0.0F
-        var parking_costs: Float = 0.0F //all allowable costs
+    inner class TaxiExp(): Exp() {
+        var erpCost: Float = 0.0F
+        var fuelCost: Float = 0.0F
+        var licenseCost: Float = 0.0F
+        var washingCost: Float = 0.0F
+        var parkingCost: Float = 0.0F //all allowable costs
 
-        private val temp = erp_cost + fuel_cost + license_costs + washing_costs + parking_costs
+        private val temp = erpCost + fuelCost + licenseCost + washingCost + parkingCost
 
         override val allowable: Float
             get() = if(temp > profit * 0.6F) temp else profit * 0.6F
@@ -31,7 +31,7 @@ class Job(
 
 abstract class Exp {
     open val allowable: Float = 0.0F
-    open val mat_cost: Float = 0.0F
+    open val matCost: Float = 0.0F
 }
 
 
