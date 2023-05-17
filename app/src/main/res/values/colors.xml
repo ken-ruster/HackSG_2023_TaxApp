@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="irasBlue">#005AAD</color>
+    <color name="darkBlueFont">#142e4f</color>>
+    <color name="gray_bg">#f4f4f4</color>
+    <color name="tableBlue">#2D7BB9</color>
 </resources>
