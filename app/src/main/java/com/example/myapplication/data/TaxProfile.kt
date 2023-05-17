@@ -1,4 +1,6 @@
-package com.example.myapplication
+package com.example.myapplication.data
+
+import com.fasterxml.jackson.annotation.JsonFormat
 
 class TaxProfile(
     private val jobs: List<Job>,
