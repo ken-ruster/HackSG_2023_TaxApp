@@ -4,6 +4,7 @@ import com.example.myapplication.data.TaxProfile
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import java.io.BufferedReader
+import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStreamReader
@@ -12,11 +13,22 @@ class FileReader {
     companion object {
         private val mapper = jacksonObjectMapper()
 
-        fun readFile(filename: String, context: Context): TaxProfile? {
+        fun readFiles(context: Context): List<TaxProfile> {
+            val dir: File? = context.filesDir
+            val res = ArrayList<TaxProfile>()
+            for (f in dir!!.listFiles()) {
+                val profile = readFile(f.name, context)
+                if (profile != null) res.add(profile)
+            }
+            return res
+        }
+
+        private fun readFile(filename: String, context: Context): TaxProfile? {
+            println("Reading $filename")
             var fis: FileInputStream? = null
             try {
-                fis = context.applicationContext.openFileInput(filename)
-                var isr = InputStreamReader(fis)
+                fis = context.openFileInput(filename)
+                val isr = InputStreamReader(fis)
                 val br = BufferedReader(isr)
                 val sb = StringBuilder()
                 var line: String? = null
@@ -27,8 +39,6 @@ class FileReader {
                     sb.append(line)
                 val json: String = sb.toString()
                 fis.close()
-                println("obtained json")
-                println(json)
                 return mapper.readValue(json)
             } catch (e: Exception) { e.printStackTrace(); }
             fis?.close()
