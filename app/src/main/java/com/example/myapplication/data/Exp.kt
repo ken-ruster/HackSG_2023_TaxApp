@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.data
 
 data class Exp (
     val expType: Int, // 0 is mat cost, 1 is allowable expense

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.data
 
 data class Rev (
     val revType: Int, // 0 is revenue, 1 is govt grant/incentive/etc
