@@ -1,9 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.data
 
-class Job(
+data class Job(
     val jobType: String,
     var jobName: String,
-) {}
+)
 
 
 
