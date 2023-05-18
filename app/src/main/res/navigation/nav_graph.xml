@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myapplication.fragments.ProfileFragment"
+        android:label="profile_page"
+        tools:layout="@layout/profile_list">
+        <action
+            android:id="@+id/profileToStatement"
+            app:destination="@id/statementFragment">
+        </action>
+        <action
+            android:id="@+id/profileToJobs"
+            app:destination="@id/jobsOverviewFragment">
+        </action>
+        <action
+            android:id="@+id/profileToRevs"
+            app:destination="@id/revsOverviewFragment">
+        </action>
+        <action
+            android:id="@+id/profileToExps"
+            app:destination="@id/expsOverviewFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/statementFragment"
+        android:name="com.example.myapplication.fragments.StatementFragment"
+        android:label="statement_page"
+        tools:layout="@layout/statement">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.TaxProfile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/jobsOverviewFragment"
+        android:name="com.example.myapplication.fragments.JobsOverviewFragment"
+        android:label="jobs_overview_page"
+        tools:layout="@layout/jobs_overview">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.TaxProfile"/>
+        <action
+            android:id="@+id/openJobEdit"
+            app:destination="@id/jobsEditFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/revsOverviewFragment"
+        android:name="com.example.myapplication.fragments.RevsOverviewFragment"
+        android:label="revs_overview_page"
+        tools:layout="@layout/revs_overview">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.TaxProfile"/>
+        <action
+            android:id="@+id/openRevEdit"
+            app:destination="@id/revsEditFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/expsOverviewFragment"
+        android:name="com.example.myapplication.fragments.ExpsOverviewFragment"
+        android:label="exps_overview_page"
+        tools:layout="@layout/exps_overview">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.TaxProfile"/>
+        <action
+            android:id="@+id/openExpEdit"
+            app:destination="@id/expsEditFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/jobsEditFragment"
+        android:name="com.example.myapplication.fragments.JobEditFragment"
+        android:label="jobs_edit_page"
+        tools:layout="@layout/job_edit">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.Job"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/revsEditFragment"
+        android:name="com.example.myapplication.fragments.RevEditFragment"
+        android:label="revs_edit_page"
+        tools:layout="@layout/rev_edit">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.Rev"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/expsEditFragment"
+        android:name="com.example.myapplication.fragments.ExpEditFragment"
+        android:label="exps_edit_page"
+        tools:layout="@layout/exp_edit">
+        <argument
+            android:name="profile"
+            app:argType="com.example.myapplication.data.Exp"/>
+    </fragment>
+
+</navigation>

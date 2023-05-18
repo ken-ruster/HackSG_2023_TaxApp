@@ -1,14 +1,31 @@
 package com.example.myapplication.data
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
+import kotlinx.parcelize.Parcelize
+import java.time.LocalDate
 
+@Parcelize
 class TaxProfile(
-    val jobs: List<Job>,
-    val revs: List<Rev>,
-    val exps: List<Exp>,
-    var fy: Int
-) {
+    val jobs: List<Job> = emptyList<Job>().plus(Job(
+        "Private Hire/Taxi Driver",
+        "Grab"
+    )),
+    val revs: List<Rev> = emptyList<Rev>().plus(Rev(
+        0,
+        "Grab",
+        0.0F
+    )),
+    val exps: List<Exp> = emptyList<Exp>().plus(Exp(
+        1,
+        "Fuel",
+        0.0F,
+        emptyMap<String, Float>().plus(Pair("Grab", 100F))
+        )),
+
+    var fy: Int = LocalDate.now().year
+) : Parcelable {
     fun totalRev(): Float = revs.sumOf { it.amt.toDouble() }.toFloat()
     fun totalMatCost(): Float = exps.sumOf { it.amt.toDouble() * (1 - it.expType) }.toFloat()
     fun totalAllowableExp(): Float = exps.sumOf { it.amt.toDouble() * it.expType }.toFloat()

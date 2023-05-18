@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="52dp"
     android:layout_gravity="center_vertical"
     android:paddingBottom="4dp"
+    android:background="@color/gray_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/jobIcon"
-        android:src="@drawable/ic_jobs_icon"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:id="@+id/editJobIcon"
+        android:id="@+id/editIcon"
         android:src="@drawable/ic_edit"
         android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="@id/jobsList"
+        app:layout_constraintEnd_toEndOf="@id/jobType"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/jobView"
+        android:id="@+id/itemName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/jobs"
+        android:text="1. Grab"
         android:fontFamily="sans-serif-medium"
         android:textSize="20sp"
         android:layout_marginHorizontal="8dp"
-        app:layout_constraintStart_toEndOf="@id/jobIcon"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/jobsList"
+        android:id="@+id/jobType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:text="Grab, Gojek"
+        android:text="Type: Private Hire / Taxi Driver"
         android:textSize="16sp"
         android:textColor="@color/darkBlueFont"
         android:textAlignment="viewStart"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintStart_toEndOf="@id/jobIcon"
+        android:paddingHorizontal="4dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
