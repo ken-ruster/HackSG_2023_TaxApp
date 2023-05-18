@@ -1,31 +1,36 @@
 package com.example.myapplication
 
 import android.view.View
+import android.view.View.OnClickListener
+import com.example.myapplication.data.TaxProfile
 import com.example.myapplication.databinding.ProfileItemBinding
-import com.example.myapplication.databinding.ProfileRowExpBinding
-import com.example.myapplication.databinding.ProfileRowJobBinding
-import com.example.myapplication.databinding.ProfileRowRevBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
 
-open class ProfileItem(private val profile: TaxProfile): BindableItem<ProfileItemBinding>(profile.fy.toLong()) {
+open class ProfileItem(
+    private val profile: TaxProfile,
+    private val listener: OnClickListener,
+    private val jobOverviewListener: OnClickListener,
+    private val revOverviewListener: OnClickListener,
+    private val expOverviewListener: OnClickListener
+): BindableItem<ProfileItemBinding>(profile.fy.toLong()) {
 
-    lateinit var profileItemBinding: ProfileItemBinding
-    lateinit var jobRowBinding: ProfileRowJobBinding
-    lateinit var revRowBinding: ProfileRowRevBinding
-    lateinit var expRowBinding: ProfileRowExpBinding
-
+    //lateinit var profileItemBinding: ProfileItemBinding
 
     override fun bind(viewBinding: ProfileItemBinding, position: Int) {
-        profileItemBinding.headerView.text = "YA" + profile.fy.toString()
-        jobRowBinding.jobsList.text = profile.jobString()
-        revRowBinding.revAmt.text = profile.totalRev().toString()
-        expRowBinding.expAmt.text = (profile.totalAllowableExp() + profile.totalMatCost()).toString()
+        with (viewBinding) {
+            headerView.text = "YA ${profile.fy}"
+            profileRow.jobsList.text = profile.jobString()
+            profileRowRev.revAmt.text = "$${profile.totalRev()}"
+            profileRowExp.expAmt.text = "$${(profile.totalAllowableExp() + profile.totalMatCost())}"
+            generateButton.setOnClickListener(listener)
 
-        jobRowBinding.editJobIcon.setOnClickListener {  }
-        revRowBinding.editRevIcon.setOnClickListener {  }
-        expRowBinding.editExpIcon.setOnClickListener {  }
-        profileItemBinding.generateButton.setOnClickListener {  }
+            profileRow.editJobIcon.setOnClickListener(jobOverviewListener)
+            profileRowRev.editRevIcon.setOnClickListener(revOverviewListener)
+            profileRowExp.editExpIcon.setOnClickListener(expOverviewListener)
+        }
+
+
     }
 
     override fun getLayout(): Int = R.layout.profile_item
