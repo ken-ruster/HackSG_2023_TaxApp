@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="ExpTypeArray">
+        <item>Material Cost</item>
+        <item>Allowable Business Expense</item>
+    </string-array>
+</resources>

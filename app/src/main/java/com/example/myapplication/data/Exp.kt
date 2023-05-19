@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Exp (
-    val expType: Int, // 0 is mat cost, 1 is allowable expense
-    val expName: String,
+    var expType: Int, // 0 is mat cost, 1 is allowable expense
+    var expName: String,
     var amt: Float,
-    val portion: Map<String, Float> // <jobID, portion in %>
+    var portion: MutableMap<String, Float> // <job XID, portion in %>
 ) : Parcelable {}

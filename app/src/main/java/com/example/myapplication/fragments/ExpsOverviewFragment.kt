@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpListItem
+import com.example.myapplication.data.Exp
 import com.example.myapplication.databinding.ExpsOverviewBinding
 import com.xwray.groupie.GroupieAdapter
 
@@ -31,11 +32,26 @@ class ExpsOverviewFragment(): Fragment() {
 
         for(exp in profile.exps){
             val listener = View.OnClickListener {
-                val action = ExpsOverviewFragmentDirections.openExpEdit(exp)
+                val action = ExpsOverviewFragmentDirections.openExpEdit(profile, exp)
                 findNavController().navigate(action)
             }
 
             yaAdapter.add(ExpListItem(profile, listener))
+        }
+
+        binding.addExp.setOnClickListener {
+            val exp = Exp(0,"",0.0F, emptyMap<String,Float>().toMutableMap())
+            profile.exps.toMutableList().add(exp)
+
+            val listener = View.OnClickListener {
+                val action = ExpsOverviewFragmentDirections.openExpEdit(profile, exp)
+                findNavController().navigate(action)
+            }
+
+            yaAdapter.add(ExpListItem(profile, listener))
+
+            val action = ExpsOverviewFragmentDirections.openExpEdit(profile, exp)
+            findNavController().navigate(action)
         }
 
         return binding.root

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="RevTypeArray">
+        <item>Commission/Salary</item>
+        <item>Grant/Incentive</item>
+    </string-array>
+</resources>

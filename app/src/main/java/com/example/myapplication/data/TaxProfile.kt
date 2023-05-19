@@ -8,21 +8,25 @@ import java.time.LocalDate
 
 @Parcelize
 class TaxProfile(
-    val jobs: List<Job> = emptyList<Job>().plus(Job(
-        "Private Hire/Taxi Driver",
-        "Grab"
-    )),
-    val revs: List<Rev> = emptyList<Rev>().plus(Rev(
+    val jobs: MutableList<Job> = emptyList<Job>().plus(Job(
         0,
-        "Grab",
-        0.0F
-    )),
-    val exps: List<Exp> = emptyList<Exp>().plus(Exp(
+        "Grab"
+    )).toMutableList(),
+    val revs: MutableList<Rev> = emptyList<Rev>().apply{
+        for (job in jobs){
+            plus(Rev(
+                "",
+                0.0F,
+                job.id
+            ))
+        }
+    }.toMutableList(),
+    val exps: MutableList<Exp> = emptyList<Exp>().plus(Exp(
         1,
         "Fuel",
         0.0F,
-        emptyMap<String, Float>().plus(Pair("Grab", 100F))
-        )),
+        emptyMap<String, Float>().toMutableMap()
+        )).toMutableList(),
 
     var fy: Int = LocalDate.now().year
 ) : Parcelable {
@@ -41,6 +45,13 @@ class TaxProfile(
         return temp
     }
     fun totalAdjProfit() = totalGrossProfit() - totalAllowableExp()
+
+    fun searchJobByName(name: String): String? {
+        for(job in jobs){
+            if (job.jobName == name) return job.id
+        }
+        return null
+    }
 
     @JsonIgnore
     fun isEmpty(): Boolean {return jobs.isEmpty()}
