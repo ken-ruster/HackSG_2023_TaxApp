@@ -8,10 +8,7 @@ import android.widget.TextView
 import com.example.myapplication.data.Job
 import com.example.myapplication.data.ProfileManager
 import com.example.myapplication.data.TaxProfile
-import com.example.myapplication.storage.ExpenseDefaults
-import com.example.myapplication.storage.JobDefaults
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import kotlin.math.exp
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         btnSave.setOnClickListener(View.OnClickListener {
-            println("Creating new profile")
+            println("Modifying current profile")
             profile = manager.createProfile(jobs, profile)
             fileData.text = "${jacksonObjectMapper().writeValueAsString(profile)}"
         })
