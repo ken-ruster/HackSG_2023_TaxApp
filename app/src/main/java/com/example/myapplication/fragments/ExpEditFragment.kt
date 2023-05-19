@@ -31,6 +31,9 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
         var exp = args.exp
 
         with(binding){
+
+            expNameEntry.setText(exp.expName)
+            expAmtEntry.setText(exp.amt.toString())
             val expTypeArray = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.ExpTypeArray,
@@ -41,6 +44,7 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
             }
 
             expTypeEntry.onItemSelectedListener= this@ExpEditFragment
+            expTypeEntry.setSelection(exp.expType)
 
             expNameEntry.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(
@@ -52,7 +56,9 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun onTextChanged(s: CharSequence, start: Int,
                                            before: Int, count: Int) {
-                    exp.expName = s.toString()
+                    if(s.isNullOrBlank()) {
+                        exp.expName = s.toString()
+                    }
                 }
 
                 override fun afterTextChanged(s: Editable?) {}
@@ -87,36 +93,13 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
             val adapter = ArrayAdapter(requireContext(),
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,stringArray)
 
-            for(item in exp.portion){
-                lateinit var newItem: ExpEditListItem
-
-                val listener: OnClickListener = OnClickListener {
-                    exp.portion.remove(item.key)
-                    yaAdapter.remove(newItem)
-                }
-                newItem = ExpEditListItem(profile, exp.portion, item.key, listener, adapter)
-                yaAdapter.add(newItem)
-            }
-
-            portionAddButton.setOnClickListener {
-                lateinit var newItem: ExpEditListItem
-                val listener: OnClickListener = OnClickListener {
-                    exp.portion.remove(newItem.key)
-                    yaAdapter.remove(newItem)
-                }
-                newItem = ExpEditListItem(
-                    profile,
-                    exp.portion,
-                    profile.jobs[0].id,
-                    listener,
-                    adapter)
-                yaAdapter.add(newItem)
+            for(job in profile.jobs){
+                yaAdapter.add(ExpEditListItem(exp.portion, job))
             }
         }
 
         return binding.root
     }
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         args.exp.expType = position
     }

@@ -5,35 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/portionName"
-        android:layout_width="200dp"
+    <CheckBox
+        android:id="@+id/checkBox"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:hint="@string/job_name"
+        android:layout_width="wrap_content"
+        android:text="Job Name"
+        android:textSize="20dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <EditText
         android:id="@+id/portionAmt"
-        android:layout_width="0dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:hint="@string/proportion"
-        android:layout_marginLeft="32dp"
+        android:layout_marginHorizontal="32dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/portionName"/>
-
-    <ImageView
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/baseline_delete_24"
-        app:layout_constraintStart_toEndOf="@id/portionAmt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

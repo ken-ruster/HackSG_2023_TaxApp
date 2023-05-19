@@ -8,25 +8,9 @@ import java.time.LocalDate
 
 @Parcelize
 class TaxProfile(
-    val jobs: MutableList<Job> = emptyList<Job>().plus(Job(
-        0,
-        "Grab"
-    )).toMutableList(),
-    val revs: MutableList<Rev> = emptyList<Rev>().apply{
-        for (job in jobs){
-            plus(Rev(
-                "",
-                0.0F,
-                job.id
-            ))
-        }
-    }.toMutableList(),
-    val exps: MutableList<Exp> = emptyList<Exp>().plus(Exp(
-        1,
-        "Fuel",
-        0.0F,
-        emptyMap<String, Float>().toMutableMap()
-        )).toMutableList(),
+    val jobs: MutableList<Job> = emptyList<Job>().toMutableList(),
+    val revs: MutableList<Rev> = emptyList<Rev>().toMutableList(),
+    val exps: MutableList<Exp> = emptyList<Exp>().toMutableList(),
 
     var fy: Int = LocalDate.now().year
 ) : Parcelable {
@@ -36,11 +20,15 @@ class TaxProfile(
     fun totalGrossProfit() = totalRev() - totalMatCost()
 
     fun jobString(): String{
-        var temp = jobs[0].jobName
+        var temp: String = "None"
 
-        if(jobs.lastIndex >= 1){
-            temp = temp + ", " + jobs[1].jobName
+        if(jobs.lastIndex >= 0) {
+            temp = jobs[0].jobName
         }
+        if(jobs.lastIndex >= 1){
+            temp = "$temp, ${jobs[1].jobName}"
+        }
+        if(jobs.lastIndex > 1) temp = "$temp,..."
 
         return temp
     }
@@ -51,6 +39,13 @@ class TaxProfile(
             if (job.jobName == name) return job.id
         }
         return null
+    }
+
+    fun revIsCreatedForJob(job: Job): Boolean{
+        for (rev in revs){
+            if(rev.id == job.id) return true
+        }
+        return false
     }
 
     @JsonIgnore
