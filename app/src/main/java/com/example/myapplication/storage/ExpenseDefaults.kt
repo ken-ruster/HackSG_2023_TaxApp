@@ -14,9 +14,16 @@ class ExpenseDefaults (context: Context) {
     private val expenseFile = File(context.filesDir, expense_filename)
 
     // Default settings can be created here
-    private var expenseSettings: Map<String, ExpenseSetting> = HashMap()
+    private var expenseSettings: Map<String, ExpenseSetting> = mapOf(
+        "vehicle_rental"       to ExpenseSetting("Vehicle Rental", 0, true),
+        "fuel"                 to ExpenseSetting("Vehicle Fuel", 1, true),
+        "vehicle_maintenance"  to ExpenseSetting("Vehicle Maintenance", 1, true),
+        "commission"           to ExpenseSetting("Commission (%s)", 1, false),
+        "teaching_materials"   to ExpenseSetting("Teaching Materials (%s)", 0, false),
+        "venue_rental"         to ExpenseSetting("Venue Rental (%s)", 0, false),
+    )
 
-    init {
+    fun loadDefaults() {
         if (expenseFile.exists()) {
             println("Expense types exist, loading existing settings")
             try {
@@ -37,7 +44,19 @@ class ExpenseDefaults (context: Context) {
 
     fun get(name: String): ExpenseSetting {
         if (expenseSettings.contains(name)) return expenseSettings[name]!!
-        return ExpenseSetting(name, 0, false)
+        return ExpenseSetting("$name (%s)", 0, false)
+    }
+
+    fun save() {
+        try {
+            jacksonObjectMapper().writeValue(expenseFile, expenseSettings)
+            println("Current expense configuration was saved")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    override fun toString(): String {
+        return jacksonObjectMapper().writeValueAsString(expenseSettings)
     }
 }
 
