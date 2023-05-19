@@ -17,9 +17,11 @@ open class JobListItem(
 
     override fun bind(viewBinding: JobRowBinding, position: Int) {
         with(viewBinding) {
-            itemName.text = profile.jobs[position].jobName
-            jobType.text = "Type: ${jobTypeArray[profile.jobs[position].jobType]}"
-            editIcon.setOnClickListener(listener)
+            if(profile.jobs.isNotEmpty()) {
+                itemName.text = profile.jobs[position].jobName
+                jobType.text = "Type: ${jobTypeArray[profile.jobs[position].jobType]}"
+                editIcon.setOnClickListener(listener)
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpListItem
 import com.example.myapplication.data.Exp
 import com.example.myapplication.databinding.ExpsOverviewBinding
+import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
 
 class ExpsOverviewFragment(): Fragment() {
@@ -36,7 +37,7 @@ class ExpsOverviewFragment(): Fragment() {
                 findNavController().navigate(action)
             }
 
-            yaAdapter.add(ExpListItem(profile, listener))
+            yaAdapter.add(ExpListItem(profile, exp, listener))
         }
 
         binding.addExp.setOnClickListener {
@@ -48,12 +49,17 @@ class ExpsOverviewFragment(): Fragment() {
                 findNavController().navigate(action)
             }
 
-            yaAdapter.add(ExpListItem(profile, listener))
+            yaAdapter.add(ExpListItem(profile, exp, listener))
 
             val action = ExpsOverviewFragmentDirections.openExpEdit(profile, exp)
             findNavController().navigate(action)
         }
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        FileReader.saveFile(args.profile, requireContext())
     }
 }

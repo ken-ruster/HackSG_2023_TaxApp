@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RevListItem
 import com.example.myapplication.data.Rev
 import com.example.myapplication.databinding.RevsOverviewBinding
+import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
 
 class RevsOverviewFragment(): Fragment() {
@@ -29,6 +30,17 @@ class RevsOverviewFragment(): Fragment() {
         val yaAdapter: GroupieAdapter = GroupieAdapter()
         val recyclerView: RecyclerView = binding.listRevs
         recyclerView.adapter = yaAdapter
+
+        for (job in profile.jobs){
+            if(!profile.revIsCreatedForJob(job)){
+                profile.revs.add(Rev(
+                    job.jobName,
+                    0.0F,
+                    job.id,
+                    0
+                ))
+            }
+        }
 
         for(rev in profile.revs){
             val listener = View.OnClickListener {
@@ -55,5 +67,10 @@ class RevsOverviewFragment(): Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        FileReader.saveFile(args.profile, requireContext())
     }
 }

@@ -23,6 +23,7 @@ open class ProfileItem(
             profileRow.jobsList.text = profile.jobString()
             profileRowRev.revAmt.text = "$${profile.totalRev()}"
             profileRowExp.expAmt.text = "$${(profile.totalAllowableExp() + profile.totalMatCost())}"
+
             generateButton.setOnClickListener(listener)
 
             profileRow.editJobIcon.setOnClickListener(jobOverviewListener)
