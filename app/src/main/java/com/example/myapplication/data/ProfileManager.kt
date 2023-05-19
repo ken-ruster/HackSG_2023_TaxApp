@@ -34,6 +34,7 @@ class ProfileManager (context: Context) {
                 if (exps.contains(converted)) exps[converted]!!.portion!![job.jobName] = 0F;
                 else exps[converted] = Exp(settings.expType, converted, 0F, hashMapOf(job.jobName to 100F))
             }
+            revs.add(Rev(0, job.jobName, 0F))
         }
 
         return TaxProfile(jobs, revs, exps.values.toList(), Year.now().value)
