@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpListItem
 import com.example.myapplication.data.Exp
+import com.example.myapplication.data.ProfileManager
 import com.example.myapplication.databinding.ExpsOverviewBinding
 import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
@@ -26,10 +27,13 @@ class ExpsOverviewFragment(): Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = ExpsOverviewBinding.inflate(layoutInflater)
         val profile = args.profile
+        val profileManager = ProfileManager(requireContext())
 
         val yaAdapter: GroupieAdapter = GroupieAdapter()
         val recyclerView: RecyclerView = binding.listExps
         recyclerView.adapter = yaAdapter
+
+        profile.exps = profileManager.generateExps(profile)
 
         for(exp in profile.exps){
             val listener = View.OnClickListener {

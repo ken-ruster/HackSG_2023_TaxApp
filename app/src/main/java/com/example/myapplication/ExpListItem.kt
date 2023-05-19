@@ -19,7 +19,13 @@ open class ExpListItem(
             expType.text = if (exp.expType == 0) "Type: Material Cost"
             else "Type: Allowable Business Expense"
             expVal.text = "Amount: $${exp.amt}"
-            proportions.text = "Proportions: ${exp.portion}"
+
+            var proportionsList = String()
+            for (entry in exp.portion.entries){
+                proportionsList += entry.key + ": " + entry.value.toString() + "%\n"
+            }
+            proportions.text = "Proportions: ${proportionsList}"
+
             editIcon.setOnClickListener(listener)
         }
     }

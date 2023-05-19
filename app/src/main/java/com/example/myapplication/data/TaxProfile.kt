@@ -8,15 +8,19 @@ import java.time.LocalDate
 
 @Parcelize
 class TaxProfile(
-    val jobs: MutableList<Job> = emptyList<Job>().toMutableList(),
-    val revs: MutableList<Rev> = emptyList<Rev>().toMutableList(),
-    val exps: MutableList<Exp> = emptyList<Exp>().toMutableList(),
+    var jobs: MutableList<Job> = emptyList<Job>().toMutableList(),
+    var revs: MutableList<Rev> = emptyList<Rev>().toMutableList(),
+    var exps: MutableList<Exp> = emptyList<Exp>().toMutableList(),
 
     var fy: Int = LocalDate.now().year
 ) : Parcelable {
     fun totalRev(): Float = revs.sumOf { it.amt.toDouble() }.toFloat()
-    fun totalMatCost(): Float = exps.sumOf { it.amt.toDouble() * (1 - it.expType) }.toFloat()
-    fun totalAllowableExp(): Float = exps.sumOf { it.amt.toDouble() * it.expType }.toFloat()
+    fun totalMatCost(): Float = exps.sumOf {
+        it.amt.toDouble() * (1 - it.expType) * it.portion.values.sum()
+    }.toFloat()
+    fun totalAllowableExp(): Float = exps.sumOf {
+        it.amt.toDouble() * it.expType * it.portion.values.sum()
+    }.toFloat()
     fun totalGrossProfit() = totalRev() - totalMatCost()
 
     fun jobString(): String{
@@ -37,6 +41,13 @@ class TaxProfile(
     fun searchJobByName(name: String): String? {
         for(job in jobs){
             if (job.jobName == name) return job.id
+        }
+        return null
+    }
+
+    fun searchJobById(id: String): String? {
+        for(job in jobs){
+            if (job.id == id) return job.id
         }
         return null
     }
