@@ -7,14 +7,18 @@ import com.example.myapplication.databinding.JobRowBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
 
-open class JobListItem(private val profile: TaxProfile, private val listener: OnClickListener): BindableItem<JobRowBinding>(profile.fy.toLong()) {
+open class JobListItem(
+    private val profile: TaxProfile,
+    private val listener: OnClickListener,
+    private val jobTypeArray: Array<String>
+): BindableItem<JobRowBinding>(profile.fy.toLong()) {
 
     lateinit var binding: JobRowBinding
 
     override fun bind(viewBinding: JobRowBinding, position: Int) {
         with(viewBinding) {
             itemName.text = profile.jobs[position].jobName
-            jobType.text = "Type: ${profile.jobs[position].jobType}"
+            jobType.text = "Type: ${jobTypeArray[profile.jobs[position].jobType]}"
             editIcon.setOnClickListener(listener)
         }
     }

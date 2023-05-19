@@ -64,10 +64,65 @@ class ProfileFragment(): Fragment() {
         return binding.root
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStart() {
+        super.onStart()
+
+        val yaAdapter: GroupieAdapter = GroupieAdapter()
+        val recyclerView: RecyclerView = binding.listProfiles
+        recyclerView.adapter = yaAdapter
+
         for (profile in profileArray){
             FileReader.saveFile(profile, requireContext())
+
+            val listener = OnClickListener {
+                val action = ProfileFragmentDirections.profileToStatement(profile)
+                findNavController().navigate(action)
+            }
+
+            val jobOverviewListener = OnClickListener{
+                val action = ProfileFragmentDirections.profileToJobs(profile)
+                findNavController().navigate(action)
+            }
+
+            val revOverviewListener = OnClickListener {
+                val action = ProfileFragmentDirections.profileToRevs(profile)
+                findNavController().navigate(action)
+            }
+
+            val expOverviewListener = OnClickListener {
+                val action = ProfileFragmentDirections.profileToExps(profile)
+                findNavController().navigate(action)
+            }
+
+            yaAdapter.add(ProfileItem(profile, listener, jobOverviewListener, revOverviewListener, expOverviewListener))
+        }
+
+        binding.addProfile.setOnClickListener {
+            val newProfile = TaxProfile()
+            FileReader.saveFile(newProfile,requireContext())
+            profileArray.toMutableList().add(newProfile)
+
+            val listener = OnClickListener {
+                val action = ProfileFragmentDirections.profileToStatement(newProfile)
+                findNavController().navigate(action)
+            }
+
+            val jobOverviewListener = OnClickListener{
+                val action = ProfileFragmentDirections.profileToJobs(newProfile)
+                findNavController().navigate(action)
+            }
+
+            val revOverviewListener = OnClickListener {
+                val action = ProfileFragmentDirections.profileToRevs(newProfile)
+                findNavController().navigate(action)
+            }
+
+            val expOverviewListener = OnClickListener {
+                val action = ProfileFragmentDirections.profileToExps(newProfile)
+                findNavController().navigate(action)
+            }
+
+            yaAdapter.add(ProfileItem(newProfile,listener, jobOverviewListener, revOverviewListener, expOverviewListener))
         }
     }
 }

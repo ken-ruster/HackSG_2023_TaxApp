@@ -107,6 +107,9 @@
         tools:layout="@layout/exp_edit">
         <argument
             android:name="profile"
+            app:argType="com.example.myapplication.data.TaxProfile"/>
+        <argument
+            android:name="exp"
             app:argType="com.example.myapplication.data.Exp"/>
     </fragment>
 

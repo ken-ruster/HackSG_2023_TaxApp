@@ -28,4 +28,6 @@
     <string name="total_amount_spent">Total amount spent</string>
     <string name="proportion_per_job">Proportion per Job</string>
     <string name="proportions">Proportions:</string>
+    <string name="add_profile">Add Profile...</string>
+    <string name="proportion">Proportion/%</string>
 </resources>
