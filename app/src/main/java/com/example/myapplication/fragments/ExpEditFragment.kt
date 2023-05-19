@@ -56,7 +56,7 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun onTextChanged(s: CharSequence, start: Int,
                                            before: Int, count: Int) {
-                    if(s.isNullOrBlank()) {
+                    if(!s.isNullOrBlank()) {
                         exp.expName = s.toString()
                     }
                 }
@@ -74,7 +74,9 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun onTextChanged(s: CharSequence, start: Int,
                                            before: Int, count: Int) {
-                    exp.amt = s.toString().toFloat()
+                    if(!s.isNullOrBlank()) {
+                        exp.amt = s.toString().toFloat()
+                    }
                 }
 
                 override fun afterTextChanged(s: Editable?) {}

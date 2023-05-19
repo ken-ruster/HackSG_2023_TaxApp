@@ -10,7 +10,6 @@ import com.example.myapplication.storage.FileReader
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private lateinit var profileArray: List<TaxProfile>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

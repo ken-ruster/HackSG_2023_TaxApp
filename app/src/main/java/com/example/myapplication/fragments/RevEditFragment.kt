@@ -61,7 +61,8 @@ class RevEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun onTextChanged(s: CharSequence, start: Int,
                                            before: Int, count: Int) {
-                    args.profile.amt = s.toString().toFloat()
+                    if (!s.isNullOrBlank())
+                        args.profile.amt = s.toString().toFloat()
                 }
 
                 override fun afterTextChanged(s: Editable?) {}
