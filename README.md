@@ -2,7 +2,7 @@
 
 Members: 
 
-<i><b>Oh Ken Wei</b></i>
+Oh Ken Wei
 
 Email: ohkw.work@gmail.com
 
@@ -11,7 +11,7 @@ Contact number: 97711438
 GitHub handle: ken-ruster
 
 
-<i><b>Yang Iiyu</b></i>
+Yang Iiyu
 
 Email: doikiness@gmail.com
 
@@ -20,7 +20,7 @@ Contact number: 91264608
 GitHub handle: P0eticPotat0es
 
 
-<i><b>Oh Ray Sen</b></i>
+Oh Ray Sen
 
 Email: raysen.work@gmail.com
 
@@ -28,6 +28,7 @@ Contact number: 97711438
 
 GitHub handle: ken-ruster
 
+# Project Theme: Financial Inclusion
 
 # Problem Statement
 
@@ -37,7 +38,12 @@ GitHub handle: ken-ruster
 
 # About the app
 
-OYOTax is an accounting application designed towards assisting self-employed persons in keeping track of their expenditures, and generating a 2-line/4-line statement to be used when filing their income tax.
+  OYOTax is an accounting application designed towards assisting self-employed persons in keeping track of their expenditures, and generating a 2-line/4-line statement to be used when filing their income tax.
 
-At its base, this application is an accounting application, prompting users to enter their income and expenditure information into the fields provided. What sets it apart from other accounting apps is its auto-generation feature - Based on the list of jobs the user entered, as well as their types, the app automatically generates a list of revenues and expenditures whihc the user is likely to incur, that are relevant to the filing of their individual income tax. The lists are, by default, based on the information available on the IRAS website, making them relatively comprehensive and applicable to a wide range of jobs.
+  At its base, this application is an accounting application, prompting users to enter their income and expenditure information into the fields provided. What sets it apart from other accounting apps is its auto-generation feature - Based on the list of jobs the user entered, as well as their types, the app automatically generates a list of revenues and expenditures whihc the user is likely to incur, that are relevant to the filing of their individual income tax. The lists are, by default, based on the information available on the IRAS website, making them relatively comprehensive and applicable to a wide range of jobs.
 
+# Future Plans
+  As it is, the app is incomplete, relying on users entering and calculating their incomes individually. We therefore plan on including a calendar-based financial tracker which will automatically pass data to the rest of the app to calculate taxation info. Further, to further assist users, we aim to integrate our application with IRAS such that the information gathered in our app can be synchronised with the IRAS database, automatically filling in the relevant fields in their Income Tax form.
+  
+# Tech stack
+Languages used: Kotlin, XML
