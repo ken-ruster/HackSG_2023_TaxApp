@@ -17,7 +17,7 @@ Email: doikiness@gmail.com
 
 Contact number: 91264608
 
-GitHub handle: P0eticPotat0es
+GitHub handle: POeticPotatoes
 
 
 Oh Ray Sen
@@ -26,7 +26,7 @@ Email: raysen.work@gmail.com
 
 Contact number: 97711438
 
-GitHub handle: ken-ruster
+GitHub handle: Suanner
 
 # Project Theme: Financial Inclusion
 
@@ -35,6 +35,8 @@ GitHub handle: ken-ruster
   When he was working as a call center assistant in IRAS, Ken Wei noticed that many of the calls came from self-employed persons who were unclear on the terms used in filing, as well as how to enter their accounts into the iras website. Specifically, there was much confusion on what constituted an allowable business expense and material cost in the calculation of their adjusted and gross profits respectively. 
 
   In addition, IRAS has provided certain features to simplify the lives of such taxpayers, but some of those initiatives have left taxpayers confused instead. For instance, certain vocations offer the choice to declare adjusted business expenses as a percentage of revenue, saving taxpayers the effort of calculating their actual expenditure. However, certain taxpayers were confused, thinking that it is a mandatory option.
+  
+  Therefore, by making this app, we hope to resolve the issues of self-employed taxpayers being confused on how to keep accounts of their individual income tax.
 
 # About the app
 
@@ -47,3 +49,5 @@ GitHub handle: ken-ruster
   
 # Tech stack
 Languages used: Kotlin, XML
+Operating system: Android
+External libraries used: Jackson, Groupie
