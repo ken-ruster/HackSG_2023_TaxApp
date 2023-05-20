@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.databinding.StatementBinding
 
@@ -23,6 +24,10 @@ class StatementFragment() : Fragment() {
         binding = StatementBinding.inflate(layoutInflater)
 
         val profile = args.profile
+
+        binding.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
 
         with(binding.statementTable) {
             statementRevAmt.text = "$${profile.totalRev()}"

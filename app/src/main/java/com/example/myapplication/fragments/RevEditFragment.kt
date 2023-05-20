@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
 import com.example.myapplication.databinding.RevEditBinding
@@ -24,6 +25,10 @@ class RevEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         binding = RevEditBinding.inflate(layoutInflater)
 
+        binding.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+
         with(binding){
             val revTypeArray = ArrayAdapter.createFromResource(
                 requireContext(),
@@ -35,6 +40,8 @@ class RevEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
             }
 
             revTypeEntry.onItemSelectedListener= this@RevEditFragment
+
+            revNameEntry.setText(args.profile.revName)
             revNameEntry.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
@@ -51,6 +58,7 @@ class RevEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
                 override fun afterTextChanged(s: Editable?) {}
             })
 
+            revAmtEntry.setText(args.profile.amt.toString())
             revAmtEntry.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,

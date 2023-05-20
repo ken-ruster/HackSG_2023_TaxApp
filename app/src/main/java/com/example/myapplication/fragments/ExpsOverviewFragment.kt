@@ -33,6 +33,10 @@ class ExpsOverviewFragment(): Fragment() {
         val recyclerView: RecyclerView = binding.listExps
         recyclerView.adapter = yaAdapter
 
+        binding.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+
         profile.exps = profileManager.generateExps(profile)
 
         for(exp in profile.exps){

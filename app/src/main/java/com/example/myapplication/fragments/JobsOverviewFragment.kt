@@ -33,6 +33,10 @@ class JobsOverviewFragment(): Fragment() {
         val recyclerView: RecyclerView = binding.listJobs
         recyclerView.adapter = yaAdapter
 
+        binding.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+
         for(job in profile.jobs){
             val listener = View.OnClickListener {
                 val action = JobsOverviewFragmentDirections.openJobEdit(job)

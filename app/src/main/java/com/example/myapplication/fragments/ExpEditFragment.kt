@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpEditListItem
@@ -31,6 +32,9 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
         var exp = args.exp
 
         with(binding){
+            backButton.setOnClickListener(){
+                findNavController().popBackStack()
+            }
 
             expNameEntry.setText(exp.expName)
             expAmtEntry.setText(exp.amt.toString())

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
 import com.example.myapplication.data.Job
@@ -26,8 +27,10 @@ class JobEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
         binding = JobEditBinding.inflate(layoutInflater)
 
         with(binding){
-
-            val jobTypeArray = ArrayAdapter.createFromResource(
+            backButton.setOnClickListener(){
+                findNavController().popBackStack()
+            }
+           ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.JobTypeArray,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item

@@ -31,6 +31,10 @@ class RevsOverviewFragment(): Fragment() {
         val recyclerView: RecyclerView = binding.listRevs
         recyclerView.adapter = yaAdapter
 
+        binding.backButton.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+
         for (job in profile.jobs){
             if(!profile.revIsCreatedForJob(job)){
                 profile.revs.add(Rev(
