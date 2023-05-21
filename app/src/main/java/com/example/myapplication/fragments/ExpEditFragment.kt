@@ -5,15 +5,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpEditListItem
 import com.example.myapplication.R
+import com.example.myapplication.data.Exp
 import com.example.myapplication.databinding.ExpEditBinding
 import com.xwray.groupie.GroupieAdapter
 
@@ -28,7 +29,8 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         binding = ExpEditBinding.inflate(layoutInflater)
         val profile = args.profile
-        var exp = args.exp
+        val exp = Exp(args.exp)
+        val isNew = args.isNew
 
         with(binding){
 
@@ -81,6 +83,13 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun afterTextChanged(s: Editable?) {}
             })
+
+            addExp.setOnClickListener{
+                if (isNew) profile.exps.add(exp)
+                else args.exp.update(exp)
+                val action = ExpEditFragmentDirections.actionExpsEditFragmentToExpsOverviewFragment()
+                findNavController().navigate(action)
+            }
 
             val yaAdapter: GroupieAdapter = GroupieAdapter()
             val recyclerView: RecyclerView = listExps

@@ -71,6 +71,6 @@ class RevsOverviewFragment(): Fragment() {
 
     override fun onPause() {
         super.onPause()
-        FileReader.saveFile(args.profile, requireContext())
+        FileReader(requireContext()).saveFile(args.profile)
     }
 }

@@ -9,55 +9,33 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStreamReader
 
-class FileReader {
-    companion object {
-        private val mapper = jacksonObjectMapper()
+class FileReader (context: Context) {
+    private val mapper = jacksonObjectMapper()
+    private val dir = File(context.filesDir, "profiles")
 
-        fun readFiles(context: Context): List<TaxProfile> {
-            val dir: File? = context.filesDir
-            val res = ArrayList<TaxProfile>()
-            for (f in dir!!.listFiles()) {
-                val profile = readFile(f.name, context)
-                if (profile != null) res.add(profile)
-            }
-            return res
-        }
+    init {
+        dir.mkdir()
+    }
 
-        private fun readFile(filename: String, context: Context): TaxProfile? {
-            println("Reading $filename")
-            var fis: FileInputStream? = null
+    fun readFiles(): List<TaxProfile> {
+        val res = ArrayList<TaxProfile>()
+        for (f in dir.listFiles()) {
+            println("Reading ${f.name}")
             try {
-                fis = context.openFileInput(filename)
-                val isr = InputStreamReader(fis)
-                val br = BufferedReader(isr)
-                val sb = StringBuilder()
-                var line: String? = null
-                while (run {
-                        line = br.readLine()
-                        line
-                    } != null)
-                    sb.append(line)
-                val json: String = sb.toString()
-                fis.close()
-                return mapper.readValue(json)
-            } catch (e: Exception) { e.printStackTrace(); }
-            fis?.close()
-            return null
-        }
-
-        fun saveFile(profile: TaxProfile, context: Context): String? {
-            val filename = profile.fy.toString() + ".json"
-            val json: String = mapper.writeValueAsString(profile)
-            println(json)
-
-            var fos: FileOutputStream? = null
-            try {
-                fos = context.applicationContext.openFileOutput(filename, Context.MODE_PRIVATE)
-                fos.write(json.toByteArray())
-                return filename
+                val profile: TaxProfile = mapper.readValue(f)
+                res.add(profile)
             } catch (e: Exception) {e.printStackTrace()}
-            fos?.close()
-            return null
         }
+        return res
+    }
+
+    fun saveFile(profile: TaxProfile): String? {
+        val filename = profile.fy.toString() + ".json"
+        println("Saving $filename")
+        try {
+            mapper.writeValue(File(dir, filename), profile)
+            return filename
+        } catch (e: Exception) {e.printStackTrace()}
+        return null
     }
 }

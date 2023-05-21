@@ -11,7 +11,8 @@ import com.xwray.groupie.viewbinding.BindableItem
 open class ExpListItem(
     private val profile: TaxProfile,
     private val exp: Exp,
-    private val listener: OnClickListener): BindableItem<ExpRowBinding>(profile.fy.toLong()) {
+    private val deleteListener: OnClickListener,
+    private val editListener: OnClickListener): BindableItem<ExpRowBinding>(profile.fy.toLong()) {
 
     override fun bind(viewBinding: ExpRowBinding, position: Int) {
         with(viewBinding) {
@@ -26,7 +27,8 @@ open class ExpListItem(
             }
             proportions.text = "Proportions: ${proportionsList}"
 
-            editIcon.setOnClickListener(listener)
+            editIcon.setOnClickListener(editListener)
+            deleteIcon.setOnClickListener(deleteListener)
         }
     }
 
