@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.JobListItem
 import com.example.myapplication.R
 import com.example.myapplication.data.Job
+import com.example.myapplication.data.ProfileManager
+import com.example.myapplication.data.TaxProfile
 import com.example.myapplication.databinding.JobsOverviewBinding
 import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
@@ -26,7 +28,9 @@ class JobsOverviewFragment(): Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = JobsOverviewBinding.inflate(layoutInflater)
-        val profile = args.profile
+        val profile: TaxProfile = args.profile
+        profile.modified = false
+
         val jobTypeArray = resources.getStringArray(R.array.JobTypeArray)
 
         val yaAdapter: GroupieAdapter = GroupieAdapter()
@@ -45,6 +49,7 @@ class JobsOverviewFragment(): Fragment() {
         binding.addJob.setOnClickListener {
             val job = Job(0,"")
             profile.jobs.add(job)
+            profile.modified = true;
 
             val listener = View.OnClickListener {
                 val action = JobsOverviewFragmentDirections.openJobEdit(job)
@@ -60,8 +65,11 @@ class JobsOverviewFragment(): Fragment() {
         return binding.root
     }
 
+
     override fun onPause() {
         super.onPause()
-        FileReader.saveFile(args.profile, requireContext())
+        val profile: TaxProfile = args.profile
+        if (profile.modified) profile.exps = ProfileManager(requireContext()).generateExps(profile)
+        FileReader(requireContext()).saveFile(profile)
     }
 }

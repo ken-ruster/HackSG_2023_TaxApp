@@ -9,4 +9,13 @@ data class Exp (
     var expName: String,
     var amt: Float,
     var portion: MutableMap<String, Float> // <job XID, portion in %>
-) : Parcelable {}
+) : Parcelable {
+
+    constructor(exp: Exp) : this(exp.expType, exp.expName, exp.amt, exp.portion)
+    fun update(exp: Exp) {
+        expType = exp.expType
+        expName = exp.expName
+        amt = exp.amt
+        portion = exp.portion
+    }
+}

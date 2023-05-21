@@ -33,9 +33,8 @@ class ExpenseDefaults (context: Context) {
                 println("Existing settings are invalid or corrupted. Using default settings.")
             }
         } else {
-            println("Created new expense type configuration file")
             try {
-                jacksonObjectMapper().writeValue(expenseFile, expenseSettings)
+                save()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
