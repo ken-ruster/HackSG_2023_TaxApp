@@ -1,35 +1,5 @@
 # OYOTax: HackSingapore 2023
 
-Members: 
-
-Oh Ken Wei
-
-Email: ohkw.work@gmail.com
-
-Contact number: 97711438
-
-GitHub handle: ken-ruster
-
-
-Yang Iiyu
-
-Email: doikiness@gmail.com
-
-Contact number: 91264608
-
-GitHub handle: POeticPotatoes
-
-
-Oh Ray Sen
-
-Email: raysen.work@gmail.com
-
-Contact number: 97711438
-
-GitHub handle: Suanner
-
-# Project Theme: Financial Inclusion
-
 # Problem Statement
 
   When he was working as a call center assistant in IRAS, Ken Wei noticed that many of the calls came from self-employed persons who were unclear on the terms used in filing, as well as how to enter their accounts into the iras website. Specifically, there was much confusion on what constituted an allowable business expense and material cost in the calculation of their adjusted and gross profits respectively. 
