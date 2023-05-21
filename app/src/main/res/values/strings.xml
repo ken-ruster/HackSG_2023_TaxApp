@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="ya">Year of Assessment</string>
+    <string name="jobs">Jobs</string>
+    <string name="revenue">Revenue</string>
+    <string name="expenditure">Expenditure</string>
+    <string name="statement">2/4-Line Statement</string>
+    <string name="adjProfitLoss">Adj. Profit/Loss</string>
+    <string name="profiles">Profiles</string>
+    <string name="grossProfitLoss">Gross Profit/Loss</string>
+    <string name="allowableExpenses">Allowable Business Expenses</string>
+    <string name="statement_title">Generated Statement</string>
+    <string name="jobs_title">Jobs</string>
+    <string name="revenues">Revenues</string>
+    <string name="expenditures">Expenditures</string>
+    <string name="edit_jobs">Edit Jobs</string>
+    <string name="job_name">Job Name</string>
+    <string name="job_type">Job Type</string>
+    <string name="edit_revenue">Edit Revenue</string>
+    <string name="revenue_name">Revenue Name</string>
+    <string name="name_of_company_or_grant">Name of company or grant</string>
+    <string name="revenue_type">Revenue Type</string>
+    <string name="amount_of_revenue_received">Amount of revenue received</string>
+    <string name="amount">Amount</string>
+    <string name="edit_expenditure">Edit Expenditure</string>
+    <string name="expenditure_name">Expenditure Name</string>
+    <string name="expenditure_type">Expenditure Type</string>
+    <string name="total_amount_spent">Total amount spent</string>
+    <string name="proportion_per_job">Proportion per Job</string>
+    <string name="proportions">Proportions:</string>
+    <string name="add_profile">Add Profile...</string>
+    <string name="proportion">Proportion/%</string>
 </resources>
