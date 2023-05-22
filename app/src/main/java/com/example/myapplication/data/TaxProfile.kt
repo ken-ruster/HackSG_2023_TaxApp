@@ -14,7 +14,6 @@ class TaxProfile(
 
     var fy: Int = LocalDate.now().year
 ) : Parcelable {
-    @JsonIgnore
     var modified = false
     fun totalRev(): Float = revs.sumOf { it.amt.toDouble() }.toFloat()
     fun totalMatCost(): Float = exps.sumOf {

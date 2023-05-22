@@ -49,7 +49,7 @@ class ProfileManager (context: Context) {
             for (expName in l) {
                 val settings = expenseDefaults.get(expName)
                 val converted = String.format(settings.expName, job.jobName)
-                if (!exps.contains(converted)) exps[converted] = Exp(settings.expType, converted, 0F, hashMapOf(job.jobName to 100F))
+                if (!exps.contains(converted)) exps[converted] = Exp(settings.expType, converted, 0F, hashMapOf(job.id to 100F))
             }
         }
 
