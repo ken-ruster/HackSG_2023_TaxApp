@@ -16,7 +16,7 @@
   At its base, this application is an accounting application, enabling users to enter their income and expenditure information into the fields provided. What sets it apart from other accounting apps is its auto-generation feature - Based on the list of jobs the user entered, as well as their types, the app automatically generates a list of applicable revenue and expenditure inputs which the user is likely to require for the filing of their individual income taxes. The lists are, by default, based on the information available on the IRAS website, making them relatively comprehensive and applicable to a wide range of jobs.
 
 
-Future Plans
+# Future Plans
 As it is, the app is incomplete, relying on users entering and calculating their incomes and expenditures individually. We plan on including a calendar-based financial tracker which will automatically pass data to the rest of the app to calculate taxation info. To further assist users, we aim to explore the possibility of integrating our application with IRAS such that the information gathered in our app can be directly submitted to the relevant fields in the Income Tax form. Other improvements considered are:
 
 1. Support for iOS Operating System devices
