@@ -3,26 +3,21 @@ package com.example.myapplication.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.makeText
+import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ProfileItem
 import com.example.myapplication.data.TaxProfile
 import com.example.myapplication.databinding.ProfileListBinding
 import com.example.myapplication.storage.FileReader
+import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupieAdapter
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlin.concurrent.thread
+import java.time.LocalDate
 
 class ProfileFragment(): Fragment() {
-    lateinit var binding: ProfileListBinding
-    lateinit var profileArray: MutableList<TaxProfile>
+
+    private lateinit var binding: ProfileListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +25,22 @@ class ProfileFragment(): Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = ProfileListBinding.inflate(layoutInflater)
+
+        if (savedInstanceState == null) {
+            binding = ProfileListBinding.inflate(inflater)
+            binding.listProfiles.adapter = GroupieAdapter()
+
+        } else {
+            binding = ProfileListBinding.bind(requireView())
+        }
+
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var profileArray: MutableList<TaxProfile>
+        val yaAdapter: GroupieAdapter = binding.listProfiles.adapter as GroupieAdapter
 
         profileArray = FileReader(requireContext()).readFiles().toMutableList()
 
@@ -40,107 +50,44 @@ class ProfileFragment(): Fragment() {
             FileReader(requireContext()).saveFile(TaxProfile())
         }
 
-        val yaAdapter: GroupieAdapter = GroupieAdapter()
-        val recyclerView: RecyclerView = binding.listProfiles
-        recyclerView.adapter = yaAdapter
+        yaAdapter.clear()
 
-        for(profile in profileArray){
-            val listener = OnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.profileToStatement(profile))
-            }
-
-            val jobOverviewListener = OnClickListener{
-                findNavController().navigate(ProfileFragmentDirections.profileToJobs(profile))
-            }
-
-            val revOverviewListener = OnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.profileToRevs(profile))
-            }
-
-            val expOverviewListener = OnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.profileToExps(profile))
-            }
-
-            yaAdapter.add(ProfileItem(profile, listener, jobOverviewListener, revOverviewListener, expOverviewListener))
+        profileArray.forEach { profile ->
+            yaAdapter.add(createProfileItem(profile))
         }
-
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val yaAdapter: GroupieAdapter = GroupieAdapter()
-        val recyclerView: RecyclerView = binding.listProfiles
-        recyclerView.adapter = yaAdapter
-
-        for (profile in profileArray){
-            FileReader(requireContext()).saveFile(profile)
-
-            val listener = OnClickListener {
-                val action = ProfileFragmentDirections.profileToStatement(profile)
-                findNavController().navigate(action)
-            }
-
-            val jobOverviewListener = OnClickListener{
-                val action = ProfileFragmentDirections.profileToJobs(profile)
-                findNavController().navigate(action)
-            }
-
-            val revOverviewListener = OnClickListener {
-                val action = ProfileFragmentDirections.profileToRevs(profile)
-                findNavController().navigate(action)
-            }
-
-            val expOverviewListener = OnClickListener {
-                val action = ProfileFragmentDirections.profileToExps(profile)
-                findNavController().navigate(action)
-            }
-
-            yaAdapter.add(ProfileItem(profile, listener, jobOverviewListener, revOverviewListener, expOverviewListener))
-        }
-
 
         binding.addProfile.setOnClickListener {
-            val newProfile = TaxProfile()
-            if (profileArray.all { profile -> profile.fy != newProfile.fy }) {
-                lifecycleScope.launch {
-                    FileReader(requireContext()).saveFile(newProfile)
-                }
-                profileArray.add(newProfile)
-
-                val listener = OnClickListener {
-                    findNavController().navigate(
-                        ProfileFragmentDirections.profileToStatement(
-                            newProfile
-                        )
-                    )
-                }
-
-                val jobOverviewListener = OnClickListener {
-                    findNavController().navigate(ProfileFragmentDirections.profileToJobs(newProfile))
-                }
-
-                val revOverviewListener = OnClickListener {
-                    findNavController().navigate(ProfileFragmentDirections.profileToRevs(newProfile))
-                }
-
-                val expOverviewListener = OnClickListener {
-                    findNavController().navigate(ProfileFragmentDirections.profileToExps(newProfile))
-                }
-
-                yaAdapter.add(
-                    ProfileItem(
-                        newProfile,
-                        listener,
-                        jobOverviewListener,
-                        revOverviewListener,
-                        expOverviewListener
-                    )
-                )
+            if (profileArray.maxOf { it.fy } >= LocalDate.now().year) {
+                Snackbar.make(binding.root, "Unable to add a tax profile beyond the current year", LENGTH_SHORT).show()
             } else {
-                makeText(requireContext(), "Profile already exists for current Year of Assessment!", Toast.LENGTH_LONG)
+                val newProfile = TaxProfile()
+
+                FileReader(requireContext()).saveFile(newProfile)
+                profileArray.add(newProfile)
+                yaAdapter.add(createProfileItem(newProfile))
             }
         }
+    }
+
+    private fun createProfileItem(profile: TaxProfile): ProfileItem {
+        return ProfileItem(
+                profile,
+                {
+                    val action = ProfileFragmentDirections.profileToStatement(profile)
+                    findNavController().navigate(action)
+                },
+                {
+                    val action = ProfileFragmentDirections.profileToJobs(profile)
+                    findNavController().navigate(action)
+                },
+                {
+                    val action = ProfileFragmentDirections.profileToRevs(profile)
+                    findNavController().navigate(action)
+                },
+                {
+                    val action = ProfileFragmentDirections.profileToExps(profile)
+                    findNavController().navigate(action)
+                },
+        )
     }
 }

@@ -5,25 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.JobListItem
 import com.example.myapplication.R
 import com.example.myapplication.data.Job
-import com.example.myapplication.data.ProfileManager
 import com.example.myapplication.data.TaxProfile
 import com.example.myapplication.databinding.JobsOverviewBinding
-import com.example.myapplication.flowClicked
 import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onEach
 
 
 class JobsOverviewFragment(): Fragment() {
@@ -36,7 +27,7 @@ class JobsOverviewFragment(): Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = JobsOverviewBinding.inflate(layoutInflater)
+        binding = JobsOverviewBinding.inflate(inflater)
         val profile: TaxProfile = args.profile
 
         val jobTypeArray = resources.getStringArray(R.array.JobTypeArray)
@@ -74,15 +65,15 @@ class JobsOverviewFragment(): Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.backButton.flowClicked()
-            .onCompletion {
-                FileReader(requireContext()).saveFile(args.profile)
-            }
-            .flowOn(Dispatchers.IO)
-            .onEach { findNavController().popBackStack() }
-            .flowWithLifecycle(lifecycle)
-            .launchIn(lifecycleScope)
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        FileReader(requireContext()).saveFile(args.profile)
     }
 }
