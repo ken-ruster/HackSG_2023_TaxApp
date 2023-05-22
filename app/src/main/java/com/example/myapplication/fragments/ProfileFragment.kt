@@ -17,6 +17,7 @@ import com.xwray.groupie.GroupieAdapter
 class ProfileFragment(): Fragment() {
     lateinit var binding: ProfileListBinding
     lateinit var profileArray: List<TaxProfile>
+    lateinit var fileReader: FileReader
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,12 +26,13 @@ class ProfileFragment(): Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = ProfileListBinding.inflate(layoutInflater)
+        fileReader = FileReader(requireContext())
 
-        profileArray = FileReader.readFiles(requireContext())
+        profileArray = fileReader.readFiles()
 
         if(profileArray.isEmpty()){
             profileArray = listOf(TaxProfile())
-            FileReader.saveFile(TaxProfile(),requireContext())
+            fileReader.saveFile(TaxProfile())
         }
 
         val yaAdapter: GroupieAdapter = GroupieAdapter()
@@ -72,7 +74,7 @@ class ProfileFragment(): Fragment() {
         recyclerView.adapter = yaAdapter
 
         for (profile in profileArray){
-            FileReader.saveFile(profile, requireContext())
+            fileReader.saveFile(profile)
 
             val listener = OnClickListener {
                 val action = ProfileFragmentDirections.profileToStatement(profile)
@@ -99,7 +101,7 @@ class ProfileFragment(): Fragment() {
 
         binding.addProfile.setOnClickListener {
             val newProfile = TaxProfile()
-            FileReader.saveFile(newProfile,requireContext())
+            fileReader.saveFile(newProfile)
             profileArray.toMutableList().add(newProfile)
 
             val listener = OnClickListener {

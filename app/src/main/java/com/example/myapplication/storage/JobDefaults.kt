@@ -33,7 +33,6 @@ class JobDefaults(context: Context) {
                 println("Existing settings are invalid or corrupted. Using default settings.")
             }
         } else {
-            println("Created new job configuration file")
             save()
         }
     }
