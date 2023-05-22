@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpEditListItem
 import com.example.myapplication.R
-import com.example.myapplication.data.Exp
 import com.example.myapplication.databinding.ExpEditBinding
 import com.xwray.groupie.GroupieAdapter
 
@@ -27,10 +26,9 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ExpEditBinding.inflate(layoutInflater)
+        binding = ExpEditBinding.inflate(inflater)
         val profile = args.profile
-        val exp = Exp(args.exp)
-        val isNew = args.isNew
+        val exp = args.exp
 
         with(binding){
             backButton.setOnClickListener(){
@@ -86,13 +84,6 @@ class ExpEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
 
                 override fun afterTextChanged(s: Editable?) {}
             })
-
-            addExp.setOnClickListener{
-                if (isNew) profile.exps.add(exp)
-                else args.exp.update(exp)
-                val action = ExpEditFragmentDirections.actionExpsEditFragmentToExpsOverviewFragment()
-                findNavController().navigate(action)
-            }
 
             val yaAdapter: GroupieAdapter = GroupieAdapter()
             val recyclerView: RecyclerView = listExps

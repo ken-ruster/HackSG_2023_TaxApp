@@ -3,16 +3,8 @@ package com.example.myapplication
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.View.OnClickListener
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.example.myapplication.data.Job
-import com.example.myapplication.data.TaxProfile
-import com.example.myapplication.databinding.ExpEditBinding
 import com.example.myapplication.databinding.ExpEditRowBinding
-import com.example.myapplication.fragments.ExpEditFragment
-import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.viewbinding.BindableItem
 
 
@@ -24,24 +16,30 @@ open class ExpEditListItem(
     override fun bind(viewBinding: ExpEditRowBinding, position: Int) {
         with(viewBinding) {
 
-            checkBox.isChecked = map.containsKey(job.id)
             checkBox.text = job.jobName
-            if(map.containsKey(job.id)){
-                portionAmt.setText(map[job.id].toString())
-            } else {
-              portionAmt.setText("0.0")
+            checkBox.isChecked = map[job.id]?.let {
+                portionAmt.setText(it.toString())
+                true
+            } ?: run {
+                portionAmt.setText("0.0")
+                false
             }
-            
-            checkBox.setOnCheckedChangeListener { _, isChecked -> if(isChecked){
-                var temp = portionAmt.text.toString().toFloat()
-                if(temp == null){
-                    temp = 0.0F
+            portionAmt.isEnabled = checkBox.isChecked
+
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                portionAmt.isEnabled = isChecked
+
+                if(isChecked) {
+                    val remainder = map.values.sum()
+                    val temp = portionAmt.text.toString().toFloatOrNull() ?: run {
+                        portionAmt.setText("0.0")
+                        0.0f
+                    }
+                    map.put(job.id, temp)
+                } else {
                     portionAmt.setText("0.0")
+                    map.remove(job.id)
                 }
-                map.put(job.id, temp)
-            } else {
-                map.remove(job.id)
-            }
             }
 
             portionAmt.addTextChangedListener(object: TextWatcher{
@@ -54,8 +52,18 @@ open class ExpEditListItem(
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     if(!s.isNullOrBlank()) {
-                        map.replace(job.id, s.toString().toFloat())
-                        checkBox.isChecked = (s.toString().toFloat() != 0.0F)
+                        checkBox.isChecked = s.toString().toFloatOrNull()?.let {
+                            map.replace(job.id, s.toString().toFloat())
+                            it != 0.0f
+                        } ?: run {
+                            map.remove(job.id)
+                            portionAmt.setText("0.0")
+                            false
+                        }
+                    } else {
+                        map.remove(job.id)
+                        portionAmt.setText("0.0")
+                        checkBox.isChecked = false
                     }
                 }
 

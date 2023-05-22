@@ -24,17 +24,6 @@ class TaxProfile(
     fun totalGrossProfit() = totalRev() - totalMatCost()
 
     fun jobString(): String{
-        /*var temp: String = "None"
-
-        if(jobs.lastIndex >= 0) {
-            temp = jobs[0].jobName
-        }
-        if(jobs.lastIndex >= 1){
-            temp = "$temp, ${jobs[1].jobName}"
-        }
-        if(jobs.lastIndex > 1) temp = "$temp,..."
-
-        return temp*/
         return jobs.joinToString(", ") {
             it.jobName
         }

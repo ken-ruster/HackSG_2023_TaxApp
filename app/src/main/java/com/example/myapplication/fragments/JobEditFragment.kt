@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
-import com.example.myapplication.data.Job
 import com.example.myapplication.databinding.JobEditBinding
 
 class JobEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
@@ -24,7 +23,7 @@ class JobEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = JobEditBinding.inflate(layoutInflater)
+        binding = JobEditBinding.inflate(inflater)
 
         with(binding){
             backButton.setOnClickListener(){

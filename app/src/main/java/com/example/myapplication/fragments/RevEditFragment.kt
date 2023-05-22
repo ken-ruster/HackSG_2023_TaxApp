@@ -23,7 +23,7 @@ class RevEditFragment:Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = RevEditBinding.inflate(layoutInflater)
+        binding = RevEditBinding.inflate(inflater)
 
         binding.backButton.setOnClickListener(){
             findNavController().popBackStack()

@@ -21,7 +21,7 @@ class StatementFragment() : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
 
-        binding = StatementBinding.inflate(layoutInflater)
+        binding = StatementBinding.inflate(inflater)
 
         val profile = args.profile
 
