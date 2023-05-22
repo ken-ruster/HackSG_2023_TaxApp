@@ -41,7 +41,6 @@ class ExpsOverviewFragment(): Fragment() {
         profile = args.profile
         yaAdapter = GroupieAdapter()
 
-        val yaAdapter: GroupieAdapter = GroupieAdapter()
         val recyclerView: RecyclerView = binding.listExps
         recyclerView.adapter = yaAdapter
 

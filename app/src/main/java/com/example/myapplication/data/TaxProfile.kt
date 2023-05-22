@@ -17,10 +17,10 @@ class TaxProfile(
     var modified = false
     fun totalRev(): Float = revs.sumOf { it.amt.toDouble() }.toFloat()
     fun totalMatCost(): Float = exps.sumOf {
-        it.amt.toDouble() * (1 - it.expType) * it.portion.values.sum()
+        it.amt.toDouble() * (1 - it.expType) * it.portion.values.sum() / 100.0
     }.toFloat()
     fun totalAllowableExp(): Float = exps.sumOf {
-        it.amt.toDouble() * it.expType * it.portion.values.sum()
+        it.amt.toDouble() * it.expType * it.portion.values.sum() / 100.0
     }.toFloat()
     fun totalGrossProfit() = totalRev() - totalMatCost()
 
