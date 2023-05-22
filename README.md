@@ -21,6 +21,7 @@ As it is, the app is incomplete, relying on users entering and calculating their
 1. Support for iOS Operating System devices
 2. More vocations beyond self-employed ones
 3. Add Chinese, Malay and Tamil languages
+4. Improve user interface ergonomics and aesthetics
 
 # Tech Stack
 Operating System: Android
