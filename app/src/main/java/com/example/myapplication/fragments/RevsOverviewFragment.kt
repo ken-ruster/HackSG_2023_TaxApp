@@ -27,6 +27,8 @@ class RevsOverviewFragment(): Fragment() {
         binding = RevsOverviewBinding.inflate(inflater)
         val profile = args.profile
 
+        profile.revs.removeIf { it.revName.isBlank() && it.amt == 0f }
+
         val yaAdapter: GroupieAdapter = GroupieAdapter()
         val recyclerView: RecyclerView = binding.listRevs
         recyclerView.adapter = yaAdapter

@@ -46,6 +46,11 @@
         android:textAlignment="viewStart"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="20dp"
+        android:maxLines="1"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         app:layout_constraintStart_toEndOf="@id/jobIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

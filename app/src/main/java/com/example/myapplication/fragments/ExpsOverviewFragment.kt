@@ -32,6 +32,8 @@ class ExpsOverviewFragment(): Fragment() {
         binding = ExpsOverviewBinding.inflate(inflater)
         profile = args.profile
 
+        profile.exps.removeIf { it.expName.isBlank() && it.amt == 0f }
+
         yaAdapter = GroupieAdapter()
         val recyclerView: RecyclerView = binding.listExps
         recyclerView.adapter = yaAdapter
@@ -75,7 +77,7 @@ class ExpsOverviewFragment(): Fragment() {
 
         val deleteListener = View.OnClickListener {
             val builder = AlertDialog.Builder(this.context)
-            builder.setMessage("Are you sure you want to Delete?")
+            builder.setMessage("Are you sure you want to delete?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
                     // Delete selected note from database

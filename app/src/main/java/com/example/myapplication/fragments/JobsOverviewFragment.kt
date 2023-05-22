@@ -30,6 +30,8 @@ class JobsOverviewFragment(): Fragment() {
         binding = JobsOverviewBinding.inflate(inflater)
         val profile: TaxProfile = args.profile
 
+        profile.jobs.removeIf { it.jobName.isBlank() }
+
         val jobTypeArray = resources.getStringArray(R.array.JobTypeArray)
 
         val yaAdapter: GroupieAdapter = GroupieAdapter()

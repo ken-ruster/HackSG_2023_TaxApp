@@ -23,9 +23,9 @@ open class ExpListItem(
 
             var proportionsList = String()
             for (entry in exp.portion.entries){
-                proportionsList += profile.searchJobById(entry.key) + ": " + entry.value.toString() + "%\n"
+                proportionsList += "\t" + profile.searchJobById(entry.key) + ": " + entry.value.toString() + "%\n"
             }
-            proportions.text = "Proportions: ${proportionsList}"
+            proportions.text = "Proportions: \n${proportionsList}"
 
             editIcon.setOnClickListener(editListener)
             deleteIcon.setOnClickListener(deleteListener)

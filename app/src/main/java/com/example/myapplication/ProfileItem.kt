@@ -19,6 +19,7 @@ open class ProfileItem(
         with (viewBinding) {
             headerView.text = "YA ${profile.fy}"
             profileRow.jobsList.text = profile.jobString()
+            profileRow.jobsList.isSelected = true
             profileRowRev.revAmt.text = "$${profile.totalRev()}"
             profileRowExp.expAmt.text = "$${(profile.totalAllowableExp() + profile.totalMatCost())}"
 
@@ -36,4 +37,3 @@ open class ProfileItem(
 
     override fun initializeViewBinding(view: View): ProfileItemBinding = ProfileItemBinding.bind(view)
 }
-
