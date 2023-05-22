@@ -2,11 +2,12 @@
 
 # The Problem
 
-  When he was working as a call center assistant in IRAS, one of the OYOTAX team members noticed that many of the calls came from self-employed persons who were unclear on the terms used in filing, as well as how to enter their accounts into the iras website. Specifically, there was much confusion on what constituted an allowable business expense and material cost in the calculation of their adjusted and gross profits respectively. 
-
-  In addition, IRAS has provided certain features to simplify the lives of such taxpayers, but some of those initiatives have left taxpayers confused instead. For instance, certain vocations offer the choice to declare adjusted business expenses as a percentage of revenue, saving taxpayers the effort of calculating their actual expenditure. However, certain taxpayers were confused, thinking that it is a mandatory option.
+  When working as a call center assistant in IRAS, one of the OYOTax team members noticed that many of the calls came from self-employed persons who were unclear on the terms used in filing, as well as how to enter their accounts into the IRAS website. Specifically, there was much confusion on what constituted an allowable business expense and material cost in the calculation of their adjusted and gross profits respectively.
   
-  Therefore, by making this app, we hope to resolve the issues of self-employed taxpayers being confused on how to keep accounts of their individual income tax.
+  Although IRAS provides certain features to simplify the tax filing requirements for such taxpayers, some of those initiatives have left taxpayers confused instead. For instance, certain vocations are offered the option to declare adjusted business expenses as a fixed percentage of revenue, saving taxpayers the effort of calculating their actual expenditure. However, many taxpayers were confused, thinking that it is a mandatory option.
+
+  Therefore, by creating this app, we hope to provide an easy way for self-employed taxpayers to take advantage of available ‘shortcuts’, and to avoid the usual confusions when filing their individual income taxes. As an added bonus, we hope this app will result in fewer support calls to the IRAS.
+
 
 # About The App
 
