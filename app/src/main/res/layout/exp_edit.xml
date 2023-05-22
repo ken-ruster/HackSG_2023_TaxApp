@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -85,7 +83,10 @@
             android:paddingHorizontal="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expNameTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/expNameTitle"
+            android:inputType="text|textCapWords|textNoSuggestions"
+            android:maxLines="1"
+            android:maxLength="50"/>
         <TextView
             android:id="@+id/expTypeTitle"
             android:layout_width="0dp"
@@ -139,7 +140,9 @@
             android:paddingHorizontal="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expAmtTitle" />
+            app:layout_constraintTop_toBottomOf="@id/expAmtTitle"
+            android:inputType="numberDecimal"
+            android:maxLines="1"/>
         <TextView
             android:id="@+id/expProportionTitle"
             android:layout_width="0dp"
