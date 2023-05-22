@@ -60,7 +60,10 @@
             android:paddingHorizontal="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/revNameTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/revNameTitle"
+            android:inputType="text|textCapWords|textNoSuggestions"
+            android:maxLines="1"
+            android:maxLength="50"/>
         <TextView
             android:id="@+id/revTypeTitle"
             android:layout_width="0dp"
@@ -111,7 +114,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/revAmtTitle"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="numberDecimal"
+            android:maxLines="1"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

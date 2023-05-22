@@ -60,7 +60,10 @@
             android:paddingHorizontal="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/jobNameTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/jobNameTitle"
+            android:inputType="text|textCapWords|textNoSuggestions"
+            android:maxLines="1"
+            android:maxLength="50"/>
         <TextView
             android:id="@+id/jobTypeTitle"
             android:layout_width="0dp"

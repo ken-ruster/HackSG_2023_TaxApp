@@ -1,7 +1,6 @@
 package com.example.myapplication.data
 
 import android.os.Parcelable
-import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
@@ -55,10 +54,11 @@ class TaxProfile(
     }
 
     fun revIsCreatedForJob(job: Job): Boolean{
-        for (rev in revs){
+        return revs.any { it.id == job.id }
+/*        for (rev in revs){
             if(rev.id == job.id) return true
         }
-        return false
+        return false*/
     }
 
     @JsonIgnore

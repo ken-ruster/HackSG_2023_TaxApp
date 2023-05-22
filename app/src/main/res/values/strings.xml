@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">OYOTax</string>
     <string name="ya">Year of Assessment</string>
     <string name="jobs">Jobs</string>
     <string name="revenue">Revenue</string>
@@ -29,5 +29,7 @@
     <string name="proportion_per_job">Proportion per Job</string>
     <string name="proportions">Proportions:</string>
     <string name="add_profile">Add Profile...</string>
+    <string name="add_revenue">Add Revenue...</string>
+    <string name="add_expense">Add Expense...</string>
     <string name="proportion">Proportion/%</string>
 </resources>
