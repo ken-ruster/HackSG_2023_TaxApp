@@ -50,6 +50,9 @@ class ExpsOverviewFragment(): Fragment() {
 
         profile.exps = ProfileManager(requireContext()).generateExps(profile)
 
+        if (profile.modified) profile.exps = ProfileManager(requireContext()).generateExps(profile)
+        profile.modified = false;
+
         loadView()
 
         binding.addExp.setOnClickListener {
@@ -100,5 +103,10 @@ class ExpsOverviewFragment(): Fragment() {
         }
 
         yaAdapter.add(ExpListItem(profile, exp, deleteListener, editListener))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        FileReader(this.requireContext()).saveFile(args.profile)
     }
 }

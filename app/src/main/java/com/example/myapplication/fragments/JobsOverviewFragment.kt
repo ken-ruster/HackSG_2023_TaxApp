@@ -38,7 +38,6 @@ class JobsOverviewFragment(): Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = JobsOverviewBinding.inflate(layoutInflater)
         val profile: TaxProfile = args.profile
-        profile.modified = false
 
         val jobTypeArray = resources.getStringArray(R.array.JobTypeArray)
 

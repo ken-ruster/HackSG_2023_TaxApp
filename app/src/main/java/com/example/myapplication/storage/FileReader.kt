@@ -32,6 +32,7 @@ class FileReader (context: Context) {
     fun saveFile(profile: TaxProfile): String? {
         val filename = profile.fy.toString() + ".json"
         println("Saving $filename")
+        println(mapper.writeValueAsString(profile))
         try {
             mapper.writeValue(File(dir, filename), profile)
             return filename
