@@ -15,8 +15,6 @@ open class ProfileItem(
     private val expOverviewListener: OnClickListener
 ): BindableItem<ProfileItemBinding>(profile.fy.toLong()) {
 
-    //lateinit var profileItemBinding: ProfileItemBinding
-
     override fun bind(viewBinding: ProfileItemBinding, position: Int) {
         with (viewBinding) {
             headerView.text = "YA ${profile.fy}"

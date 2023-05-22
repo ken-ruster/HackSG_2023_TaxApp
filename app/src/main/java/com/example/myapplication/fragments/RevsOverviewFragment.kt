@@ -5,14 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.RevListItem
 import com.example.myapplication.data.Rev
 import com.example.myapplication.databinding.RevsOverviewBinding
+import com.example.myapplication.flowClicked
 import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import kotlin.concurrent.thread
 
 class RevsOverviewFragment(): Fragment() {
     lateinit var binding: RevsOverviewBinding
@@ -58,23 +72,25 @@ class RevsOverviewFragment(): Fragment() {
                 val rev = Rev("",0.0F,null)
                 profile.revs.toMutableList().add(rev)
 
-                val listener = View.OnClickListener {
+                yaAdapter.add(RevListItem(profile) {
                     val action = RevsOverviewFragmentDirections.openRevEdit(rev)
                     findNavController().navigate(action)
-                }
-
-                yaAdapter.add(RevListItem(profile, listener))
+                })
 
                 val action = RevsOverviewFragmentDirections.openRevEdit(rev)
                 findNavController().navigate(action)
             }
         }
 
-        return binding.root
-    }
+        binding.backButton.flowClicked()
+            .onCompletion {
+                FileReader(requireContext()).saveFile(args.profile)
+            }
+            .flowOn(Dispatchers.IO)
+            .onEach { findNavController().popBackStack() }
+            .flowWithLifecycle(lifecycle)
+            .launchIn(lifecycleScope)
 
-    override fun onPause() {
-        super.onPause()
-        FileReader(requireContext()).saveFile(args.profile)
+        return binding.root
     }
 }
