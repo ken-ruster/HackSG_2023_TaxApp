@@ -15,12 +15,12 @@ class ExpenseDefaults (context: Context) {
 
     // Default settings can be created here
     private var expenseSettings: Map<String, ExpenseSetting> = mapOf(
-        "vehicle_rental"       to ExpenseSetting("Vehicle Rental", 0, true),
+        "vehicle_rental"       to ExpenseSetting("Vehicle Rental", 1, true),
         "fuel"                 to ExpenseSetting("Vehicle Fuel", 1, true),
         "vehicle_maintenance"  to ExpenseSetting("Vehicle Maintenance", 1, true),
-        "fees"           to ExpenseSetting("Platform/Service Fees (%s)", 1, false),
-        "teaching_materials"   to ExpenseSetting("Teaching Materials (%s)", 0, false),
-        "venue_rental"         to ExpenseSetting("Venue Rental (%s)", 0, false),
+        "fees"           to ExpenseSetting("Service Fees (%s)", 1, false),
+        "teaching_materials"   to ExpenseSetting("Teaching Materials (%s)", 1, false),
+        "venue_rental"         to ExpenseSetting("Venue Rental (%s)", 1, false),
     )
 
     fun loadDefaults() {

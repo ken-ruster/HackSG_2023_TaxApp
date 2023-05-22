@@ -47,7 +47,7 @@ class TaxProfile(
 
     fun searchJobById(id: String): String? {
         for(job in jobs){
-            if (job.id == id) return job.id
+            if (job.id == id) return job.jobName
         }
         return null
     }

@@ -23,7 +23,7 @@ open class ExpListItem(
 
             var proportionsList = String()
             for (entry in exp.portion.entries){
-                proportionsList += entry.key + ": " + entry.value.toString() + "%\n"
+                proportionsList += profile.searchJobById(entry.key) + ": " + entry.value.toString() + "%\n"
             }
             proportions.text = "Proportions: ${proportionsList}"
 

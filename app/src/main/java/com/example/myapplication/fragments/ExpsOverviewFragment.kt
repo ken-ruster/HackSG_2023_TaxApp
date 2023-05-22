@@ -104,9 +104,4 @@ class ExpsOverviewFragment(): Fragment() {
 
         yaAdapter.add(ExpListItem(profile, exp, deleteListener, editListener))
     }
-
-    override fun onPause() {
-        super.onPause()
-        FileReader(this.requireContext()).saveFile(args.profile)
-    }
 }
