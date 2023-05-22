@@ -29,7 +29,6 @@ class JobsOverviewFragment(): Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = JobsOverviewBinding.inflate(layoutInflater)
         val profile: TaxProfile = args.profile
-        profile.modified = false
 
         val jobTypeArray = resources.getStringArray(R.array.JobTypeArray)
 
@@ -68,8 +67,6 @@ class JobsOverviewFragment(): Fragment() {
 
     override fun onPause() {
         super.onPause()
-        val profile: TaxProfile = args.profile
-        if (profile.modified) profile.exps = ProfileManager(requireContext()).generateExps(profile)
-        FileReader(requireContext()).saveFile(profile)
+        FileReader(requireContext()).saveFile(args.profile)
     }
 }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.ExpListItem
 import com.example.myapplication.data.Exp
+import com.example.myapplication.data.ProfileManager
 import com.example.myapplication.data.TaxProfile
 import com.example.myapplication.databinding.ExpsOverviewBinding
 import com.example.myapplication.storage.FileReader
@@ -34,6 +35,9 @@ class ExpsOverviewFragment(): Fragment() {
 
         val recyclerView: RecyclerView = binding.listExps
         recyclerView.adapter = yaAdapter
+
+        if (profile.modified) profile.exps = ProfileManager(requireContext()).generateExps(profile)
+        profile.modified = false;
 
         loadView()
 
