@@ -18,7 +18,7 @@ class ExpenseDefaults (context: Context) {
         "vehicle_rental"       to ExpenseSetting("Vehicle Rental", 0, true),
         "fuel"                 to ExpenseSetting("Vehicle Fuel", 1, true),
         "vehicle_maintenance"  to ExpenseSetting("Vehicle Maintenance", 1, true),
-        "commission"           to ExpenseSetting("Commission (%s)", 1, false),
+        "fees"           to ExpenseSetting("Platform/Service Fees (%s)", 1, false),
         "teaching_materials"   to ExpenseSetting("Teaching Materials (%s)", 0, false),
         "venue_rental"         to ExpenseSetting("Venue Rental (%s)", 0, false),
     )

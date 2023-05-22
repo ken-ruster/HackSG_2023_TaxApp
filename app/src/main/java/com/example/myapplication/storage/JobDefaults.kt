@@ -18,8 +18,8 @@ class JobDefaults(context: Context) {
 
     // Default settings can be created here
     private var jobSettings : Map<String, List<String>> = mapOf(
-        "Private Hire Transport" to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "commission"),
-        "Food Delivery"          to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "commission"),
+        "Private Hire Transport" to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "fees"),
+        "Food Delivery"          to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "fees"),
         "Tuition"                to listOf("teaching_materials", "venue_rental")
     )
 
