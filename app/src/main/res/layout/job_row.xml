@@ -10,6 +10,16 @@
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:id="@+id/deleteIcon"
+        android:src="@drawable/baseline_delete_24"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintEnd_toEndOf="@id/jobType"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/editIcon"
         android:src="@drawable/ic_edit"
         android:layout_marginTop="4dp"

@@ -52,7 +52,7 @@ class RevsOverviewFragment(): Fragment() {
 
             binding.addRev.setOnClickListener {
                 val rev = Rev("",0.0F,null)
-                profile.revs.toMutableList().add(rev)
+                profile.revs.add(rev)
 
                 yaAdapter.add(RevListItem(profile) {
                     val action = RevsOverviewFragmentDirections.openRevEdit(rev)
