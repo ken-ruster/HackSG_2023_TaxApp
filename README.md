@@ -11,7 +11,7 @@
 
 # About The App
 
-  OYO(On-Your-Own)Tax is an application designed towards assisting self-employed persons in keeping track of their expenditures, and generating a 2-line/4-line statement to be used when filing their income taxes.
+  OYO(Own-Your-Own)Tax is an application designed towards assisting self-employed persons in keeping track of their expenditures, and generating a 2-line/4-line statement to be used when filing their income taxes.
   
   At its base, this application is an accounting application, enabling users to enter their income and expenditure information into the fields provided. What sets it apart from other accounting apps is its auto-generation feature - Based on the list of jobs the user entered, as well as their types, the app automatically generates a list of applicable revenue and expenditure inputs which the user is likely to require for the filing of their individual income taxes. The lists are, by default, based on the information available on the IRAS website, making them relatively comprehensive and applicable to a wide range of jobs.
 
