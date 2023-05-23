@@ -37,128 +37,137 @@
         android:paddingBottom="20dp"
         app:layout_constraintTop_toBottomOf="@id/editHeroImage" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="12dp"
-        android:background="@color/gray_bg"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/expEditHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-        <TextView
-            android:id="@+id/expNameTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/expenditure_name"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <EditText
-            android:id="@+id/expNameEntry"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="@string/name_of_company_or_grant"
-            android:lines="1"
-            android:textSize="16sp"
-            android:textColor="@color/darkBlueFont"
-            android:textAlignment="viewStart"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="4dp"
-            android:paddingHorizontal="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expNameTitle"
-            android:inputType="text|textCapWords|textNoSuggestions"
-            android:maxLines="1"
-            android:maxLength="50"/>
-        <TextView
-            android:id="@+id/expTypeTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/expenditure_type"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expNameEntry" />
-        <Spinner
-            android:id="@+id/expTypeEntry"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:textSize="16sp"
-            android:textColor="@color/darkBlueFont"
-            android:textAlignment="viewStart"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expTypeTitle" />
-        <TextView
-            android:id="@+id/expAmtTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/amount"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expTypeEntry" />
-        <EditText
-            android:id="@+id/expAmtEntry"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="@string/total_amount_spent"
-            android:textSize="16sp"
-            android:textColor="@color/darkBlueFont"
-            android:textAlignment="viewStart"
-            android:lines="1"
-            android:digits="0123456789."
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="4dp"
-            android:paddingHorizontal="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expAmtTitle"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:selectAllOnFocus="true" />
-        <TextView
-            android:id="@+id/expProportionTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/proportion_per_job"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expAmtEntry" />
-        <TextView
-            android:id="@+id/proportionExplain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/expProportionTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginHorizontal="20dp"
-            android:paddingBottom="12dp"
-            android:text="Check each item if job is applicable to expense. \nEnter amount in %."/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:id="@+id/list_exps"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/proportionExplain"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:scrollbars="vertical"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:background="@color/gray_bg"
+            >
+            <TextView
+                android:id="@+id/expNameTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/expenditure_name"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/expNameEntry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/name_of_company_or_grant"
+                android:lines="1"
+                android:textSize="16sp"
+                android:textColor="@color/darkBlueFont"
+                android:textAlignment="viewStart"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="4dp"
+                android:paddingHorizontal="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expNameTitle"
+                android:inputType="text|textCapWords|textNoSuggestions"
+                android:maxLines="1"
+                android:maxLength="50"/>
+            <TextView
+                android:id="@+id/expTypeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/expenditure_type"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expNameEntry" />
+            <Spinner
+                android:id="@+id/expTypeEntry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:textSize="16sp"
+                android:textColor="@color/darkBlueFont"
+                android:textAlignment="viewStart"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expTypeTitle" />
+            <TextView
+                android:id="@+id/expAmtTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/amount"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expTypeEntry" />
+            <EditText
+                android:id="@+id/expAmtEntry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/total_amount_spent"
+                android:textSize="16sp"
+                android:textColor="@color/darkBlueFont"
+                android:textAlignment="viewStart"
+                android:lines="1"
+                android:digits="0123456789."
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="4dp"
+                android:paddingHorizontal="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expAmtTitle"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:selectAllOnFocus="true" />
+            <TextView
+                android:id="@+id/expProportionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/proportion_per_job"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expAmtEntry" />
+            <TextView
+                android:id="@+id/proportionExplain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/expProportionTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginHorizontal="20dp"
+                android:paddingBottom="12dp"
+                android:text="Check each item if job is applicable to expense. \nEnter amount in %."/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:id="@+id/list_exps"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/proportionExplain"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:scrollbars="vertical"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
