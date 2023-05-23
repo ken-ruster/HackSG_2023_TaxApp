@@ -33,3 +33,30 @@ External Libraries:
 
 Jackson(https://github.com/FasterXML/jackson),
 Groupie(https://github.com/lisawray/groupie)
+
+# How to Install APK
+
+Android 8 or above
+
+Samsung devices
+
+    On your device, tap Settings > Apps.
+    At the top-right, tap Vertical ellipsis..
+    Tap Special access > Install unknown apps.
+    Tap the browser from where you will download the APK, such as Chrome.
+    If prompted, toggle Allow from this source on.
+
+Non-Samsung devices
+
+    On your device, go to Settings.
+    Tap Apps & notifications > Advanced.
+    Tap Special app access.
+    Tap Install unknown apps.
+    Tap the browser from where you will download the APK, such as Chrome.
+    If prompted, toggle Allow from this source on.
+
+Android 7 or below
+
+    On your device, tap Settings.
+    Tap Security.
+    Under Device administration, toggle Unknown sources on.
