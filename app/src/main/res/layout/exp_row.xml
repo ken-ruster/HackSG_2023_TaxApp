@@ -14,6 +14,7 @@
         android:src="@drawable/baseline_delete_24"
         android:layout_marginTop="4dp"
         android:layout_marginRight="50dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintEnd_toEndOf="@id/expVal"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +36,8 @@
         android:textSize="20sp"
         android:layout_marginHorizontal="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deleteIcon" />
 
     <TextView
         android:id="@+id/expType"

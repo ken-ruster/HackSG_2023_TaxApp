@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +16,14 @@ import com.example.myapplication.data.Exp
 import com.example.myapplication.data.ProfileManager
 import com.example.myapplication.data.TaxProfile
 import com.example.myapplication.databinding.ExpsOverviewBinding
+import com.example.myapplication.flowClicked
 import com.example.myapplication.storage.FileReader
 import com.xwray.groupie.GroupieAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 
 class ExpsOverviewFragment(): Fragment() {
     lateinit var binding: ExpsOverviewBinding

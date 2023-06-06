@@ -18,9 +18,19 @@ class JobDefaults(context: Context) {
 
     // Default settings can be created here
     private var jobSettings : Map<String, List<String>> = mapOf(
-        "Private Hire Transport" to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "fees"),
-        "Food Delivery"          to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "fees"),
-        "Tuition"                to listOf("teaching_materials", "venue_rental")
+        "Private Hire Transport"                 to listOf("vehicle_rental", "fuel", "vehicle_maintenance", "fees", "erp", "driving_license", "vocational_license"),
+        "Delivery"                               to listOf("fees", "compensation"),
+        "Tuition"                                to listOf("printing_stationery", "venue_rental", "cpf_contributions", "utility_charges", "public_transport", "staff_remuneration", "overseas_travelling", "entertainment"),
+        "Commission Agent"                       to listOf("venue_rental", "entertainment", "printing_stationery", "staff_remuneration", "overseas_travelling", "public_transport", "venue_maintenance"),
+        "Beauty and Wellness Operator"           to listOf("public_transport", "entertainment", "staff_remuneration", "cpf_contributions", "utility_charges"),
+        "Entertainer/ Entertainment Organiser"   to listOf("entertainment", "transport", "staff_remuneration", "cpf_contributions", "promotion_expenses", "performance_expenses"),
+        "Hawker"                                 to listOf("venue_rental", "property_tax", "mortgage_interest", "utility_charges", "transport", "staff_remuneration", "cpf_contributions", "ingredients"),
+        "Lawyer"                                 to listOf("entertainment", "public_transport", "printing_stationery", "staff_remuneration", "cpf_contributions", "association_sub"),
+        "Maid Agency Operator"                   to listOf("venue_rental", "property_tax", "mortgage_interest", "utility_charges", "staff_remuneration", "cpf_contributions"),
+        "Medical Practitioner"                   to listOf("venue_rental", "public_transport", "utility_charges", "staff_remuneration", "cpf_contributions", "association_sub"),
+        "Religious Practitioner"                 to listOf("public_transport"),
+        "Social Media Influencer"                 to listOf("utility_charges"),
+        "Sportsperson"                           to listOf("public_transport")
     )
 
     fun loadDefaults() {

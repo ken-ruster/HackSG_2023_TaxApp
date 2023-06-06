@@ -2,8 +2,18 @@
 <resources>
     <string-array
         name="JobTypeArray">
+        <item>Beauty and Wellness Operator</item>
+        <item>Commission Agent</item>
+        <item>Delivery</item>
+        <item>Entertainer/ Entertainment Organiser</item>
+        <item>Hawker</item>
+        <item>Lawyer</item>
+        <item>Maid Agency Operator</item>
+        <item>Medical Practitioner</item>
         <item>Private Hire Transport</item>
-        <item>Food Delivery</item>
+        <item>Religious Practitioner</item>
+        <item>Social Media Influencer</item>
+        <item>Sportsperson</item>
         <item>Tuition</item>
         <item>Other</item>
     </string-array>
